@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" data-theme="rose">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <!-- Primary SEO -->
+    <title>Sarika M - Test Automation Engineer</title>
+    <meta
+      name="description"
+      content="Sarika M — Test Automation Engineer specializing in Tricentis Tosca (Web/API/SAP), E2E test design, and CI/CD integrations."
+    />
+    <link rel="canonical" href="https://your-domain-or-github-pages-url/" />
+
+    <!-- Color & appearance -->
+    <meta name="color-scheme" content="light dark" />
+    <!-- Theme color (Light) -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff7fa" />
+    <!-- Theme color (Dark) -->
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0b0c" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sarika M - Test Automation Engineer" />
+    <meta
+      property="og:description"
+      content="Tricentis Tosca (Web/API/SAP), E2E test design, CI/CD integrations, and modern UI with React + Tailwind."
+    />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sarika M — Test Automation Engineer" />
+    <meta
+      name="twitter:description"
+      content="Tricentis Tosca (Web/API/SAP), E2E test design, CI/CD integrations, and modern UI with React + Tailwind."
+    />
+
+    <!-- Favicons & PWA (optional but recommended) -->
+    <!-- Place these files in /public. You can generate them with realfavicongenerator.net -->
+    <link rel="icon" href="/logo.svg" sizes="any" />
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo.svg" />
+    <!-- TODO: Create a minimal manifest.json if you want "Add to Home Screen" -->
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Preload hints (optional) -->
+    <!-- Example: preload a hero image or logo -->
+    <!-- <link rel="preload" as="image" href="/images/hero.jpg" imagesrcset="/images/hero@2x.jpg 2x" /> -->
+
+    <!-- Prevent flash of unthemed background (very subtle) -->
+    <style>
+      /* Matches your soft backgrounds before React mounts */
+      html {
+        background: radial-gradient(1200px 800px at 20% -10%, rgba(255,182,193,0.22), transparent 65%),
+                    radial-gradient(1000px 700px at 100% 0%, rgba(255,192,203,0.20), transparent 60%),
+                    linear-gradient(180deg, #fff7fa 0%, #fffafb 40%, #ffffff 100%);
+      }
+      @media (prefers-color-scheme: dark) {
+        html {
+          background: radial-gradient(1200px 800px at 20% -10%, rgba(58,42,50,0.12), transparent 65%),
+                      radial-gradient(1000px 700px at 100% 0%, rgba(42,34,39,0.10), transparent 60%),
+                      linear-gradient(180deg, #0b0b0c 0%, #0f0f12 60%, #0b0b0c 100%);
+        }
+      }
+      /* Reduce motion users get no transition jank during mount */
+      @media (prefers-reduced-motion: reduce) {
+        * { transition-duration: 0.01ms !important; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <!-- Vite entry -->
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- No-JS fallback (optional) -->
+    <noscript>
+      <style>
+        /* Keep content readable if JS is disabled */
+        .no-js-note {
+          font: 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+          color: #444;
+          max-width: 56rem;
+          margin: 2rem auto;
+          padding: 1rem;
+          border: 1px solid #e5e7eb;
+          border-radius: 0.5rem;
+          background: #fff;
+        }
+      </style>
+      <div class="no-js-note">
+        This site works best with JavaScript enabled. If you’re seeing this, please enable JavaScript to view the interactive resume.
+      </div>
+    </noscript>
+  </body>
+</html>

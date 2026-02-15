@@ -1,0 +1,396 @@
+@import "tailwindcss";
+
+/* ---------- Global tokens (defaults) ---------- */
+:root {
+    /* Accent palette (overridden per theme) */
+    --accent-500: #2563eb;
+    /* default blue as safety */
+    --accent-600: #1d4ed8;
+    --accent-700: #1e40af;
+
+    /* Background layers (used in App gradient) */
+    --bg0: #ffffff;
+    --bg1: #ffffff;
+    --bg2: #ffffff;
+    --glow-1: rgba(0, 0, 0, 0.0);
+    --glow-2: rgba(0, 0, 0, 0.0);
+
+    /* Card surfaces (subtle translucency in light; muted warmth in dark) */
+    --card-surface-light: color-mix(in oklab, white 92%, #fff7fa);
+    --card-surface-light-hover: white;
+    --card-surface-dark: color-mix(in oklab, #1a1a1f 45%, transparent);
+    --card-surface-dark-hover: color-mix(in oklab, #1a1a1f 60%, transparent);
+
+    /* Dividers */
+    --divider: color-mix(in oklab, #ffd9e6 60%, transparent);
+}
+
+/* ---------- ROSE THEME ---------- */
+:root[data-theme="rose"] {
+    --accent-500: #f43f5e;
+    /* rose-500 */
+    --accent-600: #e11d48;
+    /* rose-600 */
+    --accent-700: #be123c;
+    /* rose-700 */
+
+    --bg0: #fff7fa;
+    /* ultra pale pink */
+    --bg1: #fffafb;
+    --bg2: #ffffff;
+    --glow-1: rgba(255, 182, 193, 0.22);
+    /* LightPink */
+    --glow-2: rgba(255, 192, 203, 0.20);
+
+    --card-surface-light: color-mix(in oklab, white 92%, #fff7fa);
+    --card-surface-light-hover: white;
+    --card-surface-dark: color-mix(in oklab, #2a2227 45%, transparent);
+    --card-surface-dark-hover: color-mix(in oklab, #2a2227 60%, transparent);
+
+    --divider: color-mix(in oklab, #ffd9e6 60%, transparent);
+}
+
+/* ---------- berry THEME ---------- */
+:root[data-theme="berry"] {
+    /* Lavender/Mint vibe */
+    --accent-500: #8b5cf6;
+    /* violet-500 */
+    --accent-600: #7c3aed;
+    /* violet-600 */
+    --accent-700: #6d28d9;
+    /* violet-700 */
+
+    --bg0: #fafaff;
+    /* lavender mist */
+    --bg1: #f4fff7;
+    /* pale mint wash */
+    --bg2: #ffffff;
+    --glow-1: rgba(196, 181, 253, 0.20);
+    /* lavender glow */
+    --glow-2: rgba(167, 243, 208, 0.18);
+    /* mint glow */
+
+    --card-surface-light: color-mix(in oklab, white 92%, #f7f5ff);
+    --card-surface-light-hover: white;
+    --card-surface-dark: color-mix(in oklab, #1a1a20 45%, transparent);
+    --card-surface-dark-hover: color-mix(in oklab, #1a1a20 60%, transparent);
+
+    --divider: color-mix(in oklab, #c7d2fe 55%, transparent);
+}
+
+/* ---------- WINTER THEME ---------- */
+:root[data-theme="winter"] {
+    /* Ice blue / cyan vibe */
+    --accent-500: #06b6d4;
+    /* cyan-500 */
+    --accent-600: #0891b2;
+    /* cyan-600 */
+    --accent-700: #0e7490;
+    /* cyan-700 */
+
+    --bg0: #f7fbff;
+    /* frosted white */
+    --bg1: #f0f9ff;
+    /* very pale ice */
+    --bg2: #ffffff;
+    --glow-1: rgba(173, 216, 230, 0.22);
+    /* light blue */
+    --glow-2: rgba(186, 230, 253, 0.20);
+    /* sky/cyan */
+
+    --card-surface-light: color-mix(in oklab, white 92%, #f5fbff);
+    --card-surface-light-hover: white;
+    --card-surface-dark: color-mix(in oklab, #17202a 45%, transparent);
+    --card-surface-dark-hover: color-mix(in oklab, #17202a 60%, transparent);
+
+    --divider: color-mix(in oklab, #bae6fd 55%, transparent);
+}
+
+/* ---------- Dark-mode overrides per theme ---------- */
+@media (prefers-color-scheme: dark) {
+    :root[data-theme="rose"] {
+        --bg0: #0b0b0c;
+        --bg1: #0f0f12;
+        --bg2: #0b0b0c;
+        --glow-1: color-mix(in oklab, #3a2a32 12%, transparent);
+        --glow-2: color-mix(in oklab, #2a2227 10%, transparent);
+    }
+
+    :root[data-theme="berry"] {
+        --bg0: #0b0b0e;
+        --bg1: #0f1116;
+        --bg2: #0b0b0e;
+        --glow-1: color-mix(in oklab, #3b335d 12%, transparent);
+        --glow-2: color-mix(in oklab, #193d2d 10%, transparent);
+    }
+
+    :root[data-theme="winter"] {
+        --bg0: #0b0c0f;
+        --bg1: #0d1016;
+        --bg2: #0b0c0f;
+        --glow-1: color-mix(in oklab, #0c2a36 12%, transparent);
+        --glow-2: color-mix(in oklab, #0a2230 10%, transparent);
+    }
+}
+
+/* Smooth scroll + reduced motion */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Optional soft grain for depth */
+.bg-grain::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 2px 2px;
+    opacity: 0.12;
+}
+
+/* === Theme Switcher animations === */
+
+/* View Transitions API: nothing is required here by default; we add a body class
+   during switch so the cross-fade feels a touch longer than the default. */
+:root {
+    --theme-fade-duration: 300ms;
+}
+
+/* Accent pulse for quick feedback after switching */
+@keyframes themePulse {
+    0% {
+        box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent-500) 40%, transparent);
+    }
+
+    70% {
+        box-shadow: 0 0 0 14px color-mix(in oklab, var(--accent-500) 0%, transparent);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent-500) 0%, transparent);
+    }
+}
+
+/* A tiny round indicator we can attach to the navbar area */
+.theme-pulse-dot {
+    position: fixed;
+    top: 10px;
+    right: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: var(--accent-600);
+    animation: themePulse 600ms ease-out 1;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Popover enter/leave helpers (Tailwind v4 + arbitrary selectors work great) */
+.popover-enter {
+    opacity: 0;
+    transform: scale(0.96);
+}
+
+.popover-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 120ms ease-out, transform 120ms ease-out;
+}
+
+.popover-exit {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.popover-exit-active {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 100ms ease-in, transform 100ms ease-in;
+}
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --theme-fade-duration: 0ms;
+    }
+
+    .theme-pulse-dot {
+        animation-duration: 1ms !important;
+    }
+
+    .popover-enter-active,
+    .popover-exit-active {
+        transition-duration: 1ms !important;
+    }
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(8px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes toastOut {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(8px) scale(.98); }
+}
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-\[toastIn_180ms_ease-out_forwards\],
+  .animate-\[toastOut_140ms_ease-in_forwards\] {
+    animation-duration: 1ms !important;
+  }
+}
+
+/* =========================================================
+   THEME NAV ART — lightweight inline SVG data-URIs
+   ========================================================= */
+
+/* Helper: URL-encoded commas etc. for safety in data-URIs */
+:root {
+    --_pct: %25;
+    /* encoded % */
+}
+
+@media (max-width: 640px) {
+  header::before { opacity: .45; } /* soften on mobile */
+}
+
+/* =========================================================
+   THEME NAV ART — right-side strips (light + dark variants)
+   ========================================================= */
+
+/* Optional: per-theme sizing (width height) */
+:root[data-theme="rose"]   { --nav-art-size: 380px 64px; }
+:root[data-theme="berry"] { --nav-art-size: 420px 64px; }
+:root[data-theme="winter"] { --nav-art-size: 420px 64px; }
+
+/* ---------------- ROSE (petals) ---------------- */
+:root[data-theme="rose"] {
+  --nav-art: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='380' height='64' viewBox='0 0 380 64'>\
+  <defs>\
+    <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>\
+      <stop offset='0' stop-color='%23e11d48' stop-opacity='0.28'/>\
+      <stop offset='1' stop-color='%23f43f5e' stop-opacity='0.10'/>\
+    </linearGradient>\
+  </defs>\
+  <ellipse cx='310' cy='20' rx='16' ry='8'  fill='url(%23g)'/>\
+  <path d='M348,18c12,-8 22,10 8,18c-12,8 -22,-10 -8,-18Z' fill='url(%23g)' opacity='.9'/>\
+  <ellipse cx='270' cy='34' rx='14' ry='7'  fill='url(%23g)' opacity='.85'/>\
+  <path d='M230,14c10,-7 20,9 7,16c-10,7 -20,-9 -7,-16Z' fill='url(%23g)' opacity='.8'/>\
+</svg>");
+}
+
+/* Darker rose petals for dark mode */
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="rose"] {
+    --nav-art-dark: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='380' height='64' viewBox='0 0 380 64'>\
+  <defs>\
+    <linearGradient id='gd' x1='0' y1='0' x2='1' y2='1'>\
+      <stop offset='0' stop-color='%23be123c' stop-opacity='0.28'/>\
+      <stop offset='1' stop-color='%23e11d48' stop-opacity='0.10'/>\
+    </linearGradient>\
+  </defs>\
+  <ellipse cx='310' cy='20' rx='16' ry='8'  fill='url(%23gd)'/>\
+  <path d='M348,18c12,-8 22,10 8,18c-12,8 -22,-10 -8,-18Z' fill='url(%23gd)' opacity='.9'/>\
+  <ellipse cx='270' cy='34' rx='14' ry='7'  fill='url(%23gd)' opacity='.85'/>\
+  <path d='M230,14c10,-7 20,9 7,16c-10,7 -20,-9 -7,-16Z' fill='url(%23gd)' opacity='.8'/>\
+</svg>");
+  }
+}
+
+/* ---------------- berry (stems + blossoms) ---------------- */
+:root[data-theme="berry"] {
+  --nav-art: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='420' height='64' viewBox='0 0 420 64'>\
+  <defs>\
+    <linearGradient id='lav' x1='0' y1='0' x2='1' y2='1'>\
+      <stop offset='0' stop-color='%237c3aed' stop-opacity='0.18'/>\
+      <stop offset='1' stop-color='%238b5cf6' stop-opacity='0.10'/>\
+    </linearGradient>\
+    <linearGradient id='mint' x1='0' y1='0' x2='0' y2='1'>\
+      <stop offset='0' stop-color='%23a7f3d0' stop-opacity='0.28'/>\
+      <stop offset='1' stop-color='%23a7f3d0' stop-opacity='0.00'/>\
+    </linearGradient>\
+  </defs>\
+  <rect x='318' y='8'  width='2' height='48' fill='url(%23mint)'/>\
+  <rect x='278' y='10' width='2' height='46' fill='url(%23mint)'/>\
+  <rect x='238' y='6'  width='2' height='50' fill='url(%23mint)'/>\
+  <circle cx='318' cy='8'  r='7' fill='url(%23lav)'/>\
+  <circle cx='278' cy='10' r='6' fill='url(%23lav)'/>\
+  <circle cx='238' cy='6'  r='8' fill='url(%23lav)'/>\
+</svg>");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="berry"] {
+    --nav-art-dark: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='360' height='64' viewBox='0 0 360 64'>\
+  <defs>\
+    <linearGradient id='lavd' x1='0' y1='0' x2='1' y2='1'>\
+      <stop offset='0' stop-color='%236d28d9' stop-opacity='0.22'/>\
+      <stop offset='1' stop-color='%237c3aed' stop-opacity='0.10'/>\
+    </linearGradient>\
+    <linearGradient id='mintd' x1='0' y1='0' x2='0' y2='1'>\
+      <stop offset='0' stop-color='%238fe6c4' stop-opacity='0.26'/>\
+      <stop offset='1' stop-color='%238fe6c4' stop-opacity='0.00'/>\
+    </linearGradient>\
+  </defs>\
+  <rect x='318' y='8'  width='2' height='48' fill='url(%23mintd)'/>\
+  <rect x='278' y='10' width='2' height='46' fill='url(%23mintd)'/>\
+  <rect x='238' y='6'  width='2' height='50' fill='url(%23mintd)'/>\
+  <circle cx='318' cy='8'  r='7' fill='url(%23lavd)'/>\
+  <circle cx='278' cy='10' r='6' fill='url(%23lavd)'/>\
+  <circle cx='238' cy='6'  r='8' fill='url(%23lavd)'/>\
+</svg>");
+  }
+}
+
+/* ---------------- WINTER (ice shards) ---------------- */
+:root[data-theme="winter"] {
+  --nav-art: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='420' height='64' viewBox='0 0 420 64'>\
+  <defs>\
+    <linearGradient id='ice' x1='0' y1='0' x2='1' y2='1'>\
+      <stop offset='0' stop-color='%230891b2' stop-opacity='0.22'/>\
+      <stop offset='1' stop-color='%2306b6d4' stop-opacity='0.10'/>\
+    </linearGradient>\
+  </defs>\
+  <polygon points='392,8 418,16 400,38' fill='url(%23ice)'/>\
+  <polygon points='332,10 368,18 346,38' fill='url(%23ice)' opacity='.9'/>\
+  <polygon points='286,12 316,20 298,38' fill='url(%23ice)' opacity='.85'/>\
+  <polygon points='240,8  270,16 252,36' fill='url(%23ice)' opacity='.8'/>\
+</svg>");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="winter"] {
+    --nav-art-dark: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='420' height='64' viewBox='0 0 420 64'>\
+  <defs>\
+    <linearGradient id='iced' x1='0' y1='0' x2='1' y2='1'>\
+      <stop offset='0' stop-color='%230e7490' stop-opacity='0.26'/>\
+      <stop offset='1' stop-color='%230891b2' stop-opacity='0.12'/>\
+    </linearGradient>\
+  </defs>\
+  <polygon points='392,8 418,16 400,38' fill='url(%23iced)'/>\
+  <polygon points='332,10 368,18 346,38' fill='url(%23iced)' opacity='.9'/>\
+  <polygon points='286,12 316,20 298,38' fill='url(%23iced)' opacity='.85'/>\
+  <polygon points='240,8  270,16 252,36' fill='url(%23iced)' opacity='.8'/>\
+</svg>");
+  }
+}
